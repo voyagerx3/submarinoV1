@@ -25,6 +25,7 @@ class Menu: SKScene {
     }
     
     func seleccionMenu() {
+        // Probando la nueva rama
         let jugarLabel = SKLabelNode(fontNamed: "Avenir")
         jugarLabel.text = "Jugar"
         jugarLabel.fontColor = UIColor.blackColor()
