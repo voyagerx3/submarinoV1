@@ -29,6 +29,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     
     var puntosLabel = SKLabelNode()
     var puntosTotales: Int = 0
+    var vidaTotal: Int = 100
     var vidaLabel = SKLabelNode()
     
     let maxAspectRatio: CGFloat = 16.0/9.0
@@ -60,7 +61,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     func heroe() {
         submarino = SKSpriteNode(imageNamed: "UBoat")
         //0.3 => 0.1
-        submarino.setScale(0.1)
+        submarino.setScale(0.15)
         submarino.zPosition = 1
         submarino.position = CGPointMake(90, 200)
         submarino.name = "submarino"
@@ -81,10 +82,6 @@ class Juego: SKScene, SKPhysicsContactDelegate {
 
         moverArriba = SKAction.moveByX(0, y: 20, duration: 0.2)
         moverAbajo = SKAction.moveByX(0, y: -20, duration: 0.2)
-        
-
-        
-        
     }
     
     func enemigos(){
@@ -136,7 +133,7 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         
         // Contador de vida
         vidaLabel = SKLabelNode(fontNamed: "Avenir")
-        vidaLabel.text = "100%"
+        vidaLabel.text = String(vidaTotal)
         vidaLabel.fontColor = UIColor.whiteColor()
         vidaLabel.fontSize = 22
         vidaLabel.zPosition = 3
@@ -198,8 +195,6 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         if loQueTocamos.name == "fire" {
             disparar()
         }
-        
-
     }
     
     // Colision de torpedo con barco
@@ -214,15 +209,6 @@ class Juego: SKScene, SKPhysicsContactDelegate {
             firstBody = contact.bodyB
             secondBody = contact.bodyA
         }
-//        if ((firstBody.categoryBitMask & PhysicsCategory.Barco != 0) &&
-//            (secondBody.categoryBitMask & PhysicsCategory.Torpedo != 0)) {
-//                torpedoColisionaConBarco(firstBody.node as SKSpriteNode, enemigo: secondBody.node as SKSpriteNode)
-//        }
-//        /////--->colisionbarcosubmarino
-//        if ((firstBody.categoryBitMask & PhysicsCategory.Submarino != 0) &&
-//            (secondBody.categoryBitMask & PhysicsCategory.Barco != 0)) {
-//                submarinoColisionaConBarco(firstBody.node as SKSpriteNode, enemigo: secondBody.node as SKSpriteNode)
-//        }
         
         let node1:SKNode = contact.bodyA.node!;
         let node2:SKNode = contact.bodyB.node!;
@@ -230,33 +216,48 @@ class Juego: SKScene, SKPhysicsContactDelegate {
         {println(node1.name! + " y  " + node2.name! + " Winner" )
                 torpedoColisionaConBarco(firstBody.node as SKSpriteNode, enemigo: secondBody.node as SKSpriteNode)
         }
+        
         if ( node1.name=="barco" && node2.name=="submarino")
         {println(node1.name! + " y  " + node2.name! + " losser" )
             submarinoColisionaConBarco(firstBody.node as SKSpriteNode, enemigo: secondBody.node as SKSpriteNode)
-
         }
         
-}
+    }
     
     // Cuando colisionan torpedo y enemigo los destruimos e incrementamos la puntuacion
     func torpedoColisionaConBarco(torpedo:SKSpriteNode, enemigo:SKSpriteNode) {
         puntosTotales++
         puntosLabel.text = String(puntosTotales)
         println("barco tocado")
-        // Sonido de destruccion del barco
-        runAction(SKAction.playSoundFileNamed("explosion.mp3", waitForCompletion: false))
-        
+        explotarSubmarino(enemigo)
         torpedo.removeFromParent()
         enemigo.removeFromParent()
     }
     
     // Cuando colisiona un barco con el submarino destruimos el barco y bajamos vida de submarino
     func submarinoColisionaConBarco(submarino:SKSpriteNode, enemigo:SKSpriteNode) {
+        vidaTotal -= 10
+        if vidaTotal <= 0 {
+            let transicion = SKTransition.revealWithDirection(SKTransitionDirection.Right, duration: 2)
+            let  aparecerEscena = GameOver(size: self.size)
+            aparecerEscena.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene?.view?.presentScene(aparecerEscena, transition: transicion)
+        }
+        vidaLabel.text = String(vidaTotal)
         println("submarino tocado")
-        // Sonido de destruccion del barco
-        runAction(SKAction.playSoundFileNamed("explosion.mp3", waitForCompletion: false))
+        explotarSubmarino(enemigo)
         //submarino enemigo
         submarino.removeFromParent()
+    }
+    
+    func explotarSubmarino (enemigo:SKSpriteNode) {
+        let efectoExplosion = SKEmitterNode(fileNamed: "explosion.sks")
+        efectoExplosion.zPosition = 5
+        efectoExplosion.setScale(0.4)
+        efectoExplosion.position = enemigo.position
+        addChild(efectoExplosion)
+        // Sonido de destruccion del barco
+        runAction(SKAction.playSoundFileNamed("explosion.mp3", waitForCompletion: false))
     }
     
     func disparar() {

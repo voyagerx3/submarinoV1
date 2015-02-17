@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		133877141A93D97E006FC319 /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133877131A93D97E006FC319 /* GameOver.swift */; };
 		136B56731A7E92B60045395D /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136B56721A7E92B60045395D /* Record.swift */; };
 		136FE5001A7FF5330009D189 /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 136FE4FF1A7FF5330009D189 /* explosion.mp3 */; };
 		1392BFC81A6142EF00CCC422 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1392BFC71A6142EF00CCC422 /* Enemy.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		133877131A93D97E006FC319 /* GameOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
 		136B56721A7E92B60045395D /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		136FE4FF1A7FF5330009D189 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
 		1392BFC71A6142EF00CCC422 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				9A0E58121A40D1090079AD38 /* Juego.swift */,
 				136B56721A7E92B60045395D /* Record.swift */,
 				13DD9D991A86303D00691401 /* Instrucciones.swift */,
+				133877131A93D97E006FC319 /* GameOver.swift */,
 				1392BFC71A6142EF00CCC422 /* Enemy.swift */,
 				829FE4541A41E822001AD7D1 /* utilidades.swift */,
 				9A0E57F41A40CB5D0079AD38 /* Main.storyboard */,
@@ -249,6 +252,7 @@
 				829FE4551A41E822001AD7D1 /* utilidades.swift in Sources */,
 				9A0E58131A40D1090079AD38 /* Juego.swift in Sources */,
 				1392BFC81A6142EF00CCC422 /* Enemy.swift in Sources */,
+				133877141A93D97E006FC319 /* GameOver.swift in Sources */,
 				9A0E58111A40CC050079AD38 /* Menu.swift in Sources */,
 				136B56731A7E92B60045395D /* Record.swift in Sources */,
 				9A0E57F31A40CB5D0079AD38 /* ViewController.swift in Sources */,
