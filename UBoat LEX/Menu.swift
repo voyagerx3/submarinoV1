@@ -39,6 +39,8 @@ class Menu: SKScene {
         recordsLabel.fontSize = 30
         recordsLabel.position = CGPoint(x: size.width / 2 - 100, y: size.height / 2)
         recordsLabel.name = "Puntuacion"
+
+        
         
         let instruccionesLabel = SKLabelNode(fontNamed: "Avenir")
         instruccionesLabel.text = "Instrucciones"
@@ -47,9 +49,17 @@ class Menu: SKScene {
         instruccionesLabel.position = CGPoint(x: size.width / 2 - 100, y: size.height / 2 - 30)
         instruccionesLabel.name = "Instrucciones"
         
+        let volarLabel = SKLabelNode(fontNamed: "Avenir")
+        volarLabel.text = "Volar"
+        volarLabel.fontColor = UIColor.blackColor()
+        volarLabel.fontSize = 30
+        volarLabel.position = CGPoint(x: size.width / 2 - 100, y: size.height / 2 - 60)
+        volarLabel.name = "Volar"
+        
         addChild(jugarLabel)
         addChild(recordsLabel)
         addChild(instruccionesLabel)
+        addChild(volarLabel)
     }
 
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -72,6 +82,12 @@ class Menu: SKScene {
             let  aparecerEscena = Instrucciones(size: self.size)
             aparecerEscena.scaleMode = SKSceneScaleMode.AspectFill
             self.scene?.view?.presentScene(aparecerEscena, transition: transicion)
+        } else if loQueTocamos.name == "Volar" {
+            let transicion = SKTransition.revealWithDirection(SKTransitionDirection.Left, duration: 2)
+            let  aparecerEscena = Volar(size: self.size)
+            aparecerEscena.scaleMode = SKSceneScaleMode.AspectFill
+            self.scene?.view?.presentScene(aparecerEscena, transition: transicion)
         }
+    
     }
 }

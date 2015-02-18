@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C83C2F61A94FF5900133F03 /* sub.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 0C83C2F51A94FF5900133F03 /* sub.atlas */; };
+		0CEA52241A924CA500DC6F9B /* Volar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEA52231A924CA500DC6F9B /* Volar.swift */; };
 		136B56731A7E92B60045395D /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136B56721A7E92B60045395D /* Record.swift */; };
 		136FE5001A7FF5330009D189 /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 136FE4FF1A7FF5330009D189 /* explosion.mp3 */; };
 		1392BFC81A6142EF00CCC422 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1392BFC71A6142EF00CCC422 /* Enemy.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C83C2F51A94FF5900133F03 /* sub.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = sub.atlas; path = "../../../../zWork/2015/LexcodeCurso/untitled folder/sub.atlas"; sourceTree = "<group>"; };
+		0CEA52231A924CA500DC6F9B /* Volar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Volar.swift; sourceTree = "<group>"; };
 		136B56721A7E92B60045395D /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		136FE4FF1A7FF5330009D189 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
 		1392BFC71A6142EF00CCC422 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
@@ -79,6 +83,7 @@
 		9A0E57E21A40CB5D0079AD38 = {
 			isa = PBXGroup;
 			children = (
+				0C83C2F51A94FF5900133F03 /* sub.atlas */,
 				9A0E57ED1A40CB5D0079AD38 /* UBoat LEX */,
 				9A0E58031A40CB5D0079AD38 /* UBoat LEXTests */,
 				9A0E57EC1A40CB5D0079AD38 /* Products */,
@@ -113,6 +118,7 @@
 				136FE4FF1A7FF5330009D189 /* explosion.mp3 */,
 				9A0E57F91A40CB5D0079AD38 /* LaunchScreen.xib */,
 				9A0E57EE1A40CB5D0079AD38 /* Supporting Files */,
+				0CEA52231A924CA500DC6F9B /* Volar.swift */,
 			);
 			path = "UBoat LEX";
 			sourceTree = "<group>";
@@ -228,6 +234,7 @@
 				1392BFCA1A6168F500CCC422 /* estelaMar.sks in Resources */,
 				13DD9D9C1A86632200691401 /* explosion.sks in Resources */,
 				9A0E57FB1A40CB5D0079AD38 /* LaunchScreen.xib in Resources */,
+				0C83C2F61A94FF5900133F03 /* sub.atlas in Resources */,
 				9A0E57F81A40CB5D0079AD38 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				829FE4551A41E822001AD7D1 /* utilidades.swift in Sources */,
+				0CEA52241A924CA500DC6F9B /* Volar.swift in Sources */,
 				9A0E58131A40D1090079AD38 /* Juego.swift in Sources */,
 				1392BFC81A6142EF00CCC422 /* Enemy.swift in Sources */,
 				9A0E58111A40CC050079AD38 /* Menu.swift in Sources */,

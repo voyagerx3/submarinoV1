@@ -31,6 +31,9 @@ class Juego: SKScene, SKPhysicsContactDelegate {
     var puntosTotales: Int = 0
     var vidaLabel = SKLabelNode()
     
+    let anchoScreen: CGFloat = UIScreen.mainScreen().bounds.width
+    let altoScreen:  CGFloat = UIScreen.mainScreen().bounds.height
+    
     let maxAspectRatio: CGFloat = 16.0/9.0
     var areaJugable = CGRect()
     
