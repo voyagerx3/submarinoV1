@@ -19,6 +19,12 @@ class Volar: SKScene, SKPhysicsContactDelegate {
     var submarino: SKSpriteNode!
     var submarinoAtlas = SKTextureAtlas(named: "sub")
     var submarinoFrames = [SKTexture]()
+
+    var torpedo : SKSpriteNode!
+    var torpedoAtlas = SKTextureAtlas(named: "misil")
+    var torpedoFrames = [SKTexture]()
+
+    var botonDisparo = SKSpriteNode()
     
     let velocidadFondo: CGFloat = 2
     
@@ -39,6 +45,13 @@ class Volar: SKScene, SKPhysicsContactDelegate {
             aparecerEscena.scaleMode = SKSceneScaleMode.AspectFill
             self.scene?.view?.presentScene(aparecerEscena, transition: transicion)
         }
+        let tocarFire: AnyObject = touches.anyObject()!
+        if loQueTocamos.name == "fire" {
+            disparar()
+        }
+        
+        
+        
     }
     func crearEscenario() {
 //        for var indice = 0; indice < 2; ++indice {
@@ -102,18 +115,18 @@ class Volar: SKScene, SKPhysicsContactDelegate {
         puntosLabel.position = CGPoint(x: puntosTexto.position.x + 50, y: size.height - 20)
         puntosLabel.name = "Puntos"
         
-        // Boton de disparo
-//        botonDisparo = SKSpriteNode(imageNamed: "firebutton")
-//        botonDisparo.setScale(0.5)
-//        botonDisparo.zPosition = 3
-//        botonDisparo.position = CGPoint(x: size.width - 80, y: 50)
-//        botonDisparo.name = "fire"
+        //Boton de disparo
+        botonDisparo = SKSpriteNode(imageNamed: "firebutton")
+        botonDisparo.setScale(0.5)
+        botonDisparo.zPosition = 3
+        botonDisparo.position = CGPoint(x: size.width - 80, y: 50)
+        botonDisparo.name = "fire"
         
         addChild(vidaTexto)
         addChild(vidaLabel)
         addChild(puntosTexto)
         addChild(puntosLabel)
-//        addChild(botonDisparo)
+        addChild(botonDisparo)
         addChild(fondoHub)
     }
  
@@ -128,8 +141,7 @@ class Volar: SKScene, SKPhysicsContactDelegate {
                     submarinoFrames.append(texture)
                 }
         submarino=SKSpriteNode(texture: submarinoFrames[0])
-        //       explosion.position=CGPointMake(x,y)
-        addChild(submarino)
+         addChild(submarino)
         submarino.runAction(SKAction.repeatActionForever(SKAction.animateWithTextures(submarinoFrames, timePerFrame: 0.4, resize: false, restore: false)))
         
         
@@ -142,13 +154,52 @@ class Volar: SKScene, SKPhysicsContactDelegate {
         submarino.physicsBody?.dynamic=true
         submarino.physicsBody?.affectedByGravity=false
         submarino.physicsBody?.allowsRotation=false
-//        submarino.physicsBody?.categoryBitMask=categoriasubmarino
-//        submarino.physicsBody?.collisionBitMask=categoriahome
-//        submarino.physicsBody?.contactTestBitMask=categoriahome
-       // addChild(submarino)
+        //submarino.physicsBody?.categoryBitMask=categoriasubmarino
+        //submarino.physicsBody?.collisionBitMask=categoriahome
+        //submarino.physicsBody?.contactTestBitMask=categoriahome
+        //addChild(submarino)
     }
     
-
+    func disparar() {
+        
+//        var nombreTextura = [NSArray].self
+//        var totalImgs = torpedoAtlas.textureNames.count
+//        for var x = 1; x < totalImgs; x++
+//        {
+//            var textureName = "misil\(x)"
+//            var texture = torpedoAtlas.textureNamed(textureName)
+//            torpedoFrames.append(texture)
+//        }
+//        torpedo=SKSpriteNode(texture: torpedoFrames[0])
+//        addChild(torpedo)
+//        torpedo.runAction(SKAction.repeatActionForever(SKAction.animateWithTextures(torpedoFrames, timePerFrame: 0.4, resize: false, restore: false)))
+//        println("torpedo va...")
+        
+       torpedo = SKSpriteNode(imageNamed: "torpedo")
+        //0.2=>0.1
+        torpedo.setScale(0.1)
+        torpedo.zPosition = 1
+        torpedo.position = CGPointMake(submarino.position.x + (submarino.size.width/4) , submarino.position.y - (submarino.size.height/4) )
+        torpedo.name = "torpedo"
+        torpedo.physicsBody = SKPhysicsBody(rectangleOfSize: torpedo.size)
+        torpedo.physicsBody?.dynamic = true
+        torpedo.physicsBody?.affectedByGravity=false
+            //torpedo.physicsBody?.categoryBitMask = PhysicsCategory.Torpedo
+            //torpedo.physicsBody?.contactTestBitMask = PhysicsCategory.Barco
+            //torpedo.physicsBody?.collisionBitMask = PhysicsCategory.None
+            //torpedo.physicsBody?.usesPreciseCollisionDetection = true
+        //////////////
+        
+       addChild(torpedo)
+        
+        let mover = SKAction.moveToX(size.width + torpedo.size.width, duration: 2.0)
+        let eliminar = SKAction.removeFromParent()
+        torpedo.runAction(SKAction.sequence([mover, eliminar]))
+        println("torpedo va...")
+        
+    }
+    
+    
 ////
     func vuelosubmarino() {
         self.enumerateChildNodesWithName("heroe01", usingBlock: { (nodo, stop) -> Void in
