@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C78432A1A9762C100A11D6F /* misilc.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 0C7843291A9762C100A11D6F /* misilc.atlas */; };
 		0C83C2F61A94FF5900133F03 /* sub.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 0C83C2F51A94FF5900133F03 /* sub.atlas */; };
-		0C83C2F81A95E94400133F03 /* misil.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 0C83C2F71A95E94400133F03 /* misil.atlas */; };
 		0CEA52241A924CA500DC6F9B /* Volar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CEA52231A924CA500DC6F9B /* Volar.swift */; };
 		136B56731A7E92B60045395D /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 136B56721A7E92B60045395D /* Record.swift */; };
 		136FE5001A7FF5330009D189 /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 136FE4FF1A7FF5330009D189 /* explosion.mp3 */; };
@@ -39,8 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C7843291A9762C100A11D6F /* misilc.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = misilc.atlas; sourceTree = "<group>"; };
 		0C83C2F51A94FF5900133F03 /* sub.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = sub.atlas; path = "../../../../zWork/2015/LexcodeCurso/untitled folder/sub.atlas"; sourceTree = "<group>"; };
-		0C83C2F71A95E94400133F03 /* misil.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = misil.atlas; sourceTree = "<group>"; };
 		0CEA52231A924CA500DC6F9B /* Volar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Volar.swift; sourceTree = "<group>"; };
 		136B56721A7E92B60045395D /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		136FE4FF1A7FF5330009D189 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 		9A0E57E21A40CB5D0079AD38 = {
 			isa = PBXGroup;
 			children = (
-				0C83C2F71A95E94400133F03 /* misil.atlas */,
+				0C7843291A9762C100A11D6F /* misilc.atlas */,
 				0C83C2F51A94FF5900133F03 /* sub.atlas */,
 				9A0E57ED1A40CB5D0079AD38 /* UBoat LEX */,
 				9A0E58031A40CB5D0079AD38 /* UBoat LEXTests */,
@@ -232,13 +232,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				136FE5001A7FF5330009D189 /* explosion.mp3 in Resources */,
-				0C83C2F81A95E94400133F03 /* misil.atlas in Resources */,
 				1392BFCC1A616B0100CCC422 /* spark.png in Resources */,
 				9A0E57F61A40CB5D0079AD38 /* Main.storyboard in Resources */,
 				1392BFCA1A6168F500CCC422 /* estelaMar.sks in Resources */,
 				13DD9D9C1A86632200691401 /* explosion.sks in Resources */,
 				9A0E57FB1A40CB5D0079AD38 /* LaunchScreen.xib in Resources */,
 				0C83C2F61A94FF5900133F03 /* sub.atlas in Resources */,
+				0C78432A1A9762C100A11D6F /* misilc.atlas in Resources */,
 				9A0E57F81A40CB5D0079AD38 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

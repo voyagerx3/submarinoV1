@@ -21,9 +21,18 @@ class Volar: SKScene, SKPhysicsContactDelegate {
     var submarinoFrames = [SKTexture]()
 
     var torpedo : SKSpriteNode!
-    var torpedoAtlas = SKTextureAtlas(named: "misil")
+    var torpedoAtlas = SKTextureAtlas(named: "misilc")
     var torpedoFrames = [SKTexture]()
 
+    
+    let verticalPipeGap = 150.0
+    var pipeTextureUp:SKTexture! //sin usar
+    var pipeTextureDown:SKTexture!
+    var movePipesAndRemove:SKAction!
+    var moving:SKNode!
+    var pipes:SKNode!
+    
+    
     var botonDisparo = SKSpriteNode()
     
     let velocidadFondo: CGFloat = 2
@@ -32,6 +41,7 @@ class Volar: SKScene, SKPhysicsContactDelegate {
         heroe01()
         crearEscenario()
         hub()
+        crearMontains()
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -53,6 +63,60 @@ class Volar: SKScene, SKPhysicsContactDelegate {
         
         
     }
+  
+    func crearMontains() {
+        pipeTextureUp = SKTexture(imageNamed: "PipeUp")
+        pipeTextureUp.filteringMode = .Nearest
+        pipeTextureDown = SKTexture(imageNamed: "PipeDown")
+        pipeTextureDown.filteringMode = .Nearest
+        let distanceToMove = CGFloat(self.frame.size.width + 2.0 * pipeTextureUp.size().width)
+        let movePipes = SKAction.moveByX(-distanceToMove, y:0.0, duration:NSTimeInterval(0.01 * distanceToMove))
+        let removePipes = SKAction.removeFromParent()
+        movePipesAndRemove = SKAction.sequence([movePipes, removePipes])
+    }
+  
+    func spawnPipes() {
+        let pipePair = SKNode()
+        pipePair.position = CGPointMake( self.frame.size.width + pipeTextureUp.size().width * 2, 0 )
+        pipePair.zPosition = -10
+        
+        let height = UInt32( UInt(self.frame.size.height / 4) )
+        let y = arc4random() % height + height
+        
+        let pipeDown = SKSpriteNode(texture: pipeTextureDown)
+        pipeDown.setScale(2.0)
+        pipeDown.position = CGPointMake(0.0, CGFloat(Double(y)) + pipeDown.size.height + CGFloat(verticalPipeGap))
+        
+        
+        pipeDown.physicsBody = SKPhysicsBody(rectangleOfSize: pipeDown.size)
+        pipeDown.physicsBody?.dynamic = false
+        ////pipeDown.physicsBody?.categoryBitMask = pipeCategory
+        ////pipeDown.physicsBody?.contactTestBitMask = birdCategory
+        pipePair.addChild(pipeDown)
+        
+        let pipeUp = SKSpriteNode(texture: pipeTextureUp)
+        pipeUp.setScale(2.0)
+        pipeUp.position = CGPointMake(0.0, CGFloat(Double(y)))
+        
+        pipeUp.physicsBody = SKPhysicsBody(rectangleOfSize: pipeUp.size)
+        pipeUp.physicsBody?.dynamic = false
+        ////pipeUp.physicsBody?.categoryBitMask = pipeCategory
+        ////pipeUp.physicsBody?.contactTestBitMask = birdCategory
+        pipePair.addChild(pipeUp)
+        
+        var contactNode = SKNode()
+        ////contactNode.position = CGPointMake( pipeDown.size.width + bird.size.width / 2, CGRectGetMidY( self.frame ) )
+        contactNode.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake( pipeUp.size.width, self.frame.size.height ))
+        contactNode.physicsBody?.dynamic = false
+        ////contactNode.physicsBody?.categoryBitMask = scoreCategory
+        ////contactNode.physicsBody?.contactTestBitMask = birdCategory
+        pipePair.addChild(contactNode)
+        
+        pipePair.runAction(movePipesAndRemove)
+        pipes.addChild(pipePair)
+        
+    }
+    
     func crearEscenario() {
 //        for var indice = 0; indice < 2; ++indice {
 //            let fondo = SKSpriteNode(imageNamed: "sea01v02")
@@ -162,22 +226,32 @@ class Volar: SKScene, SKPhysicsContactDelegate {
     
     func disparar() {
         
-//        var nombreTextura = [NSArray].self
-//        var totalImgs = torpedoAtlas.textureNames.count
-//        for var x = 1; x < totalImgs; x++
-//        {
-//            var textureName = "misil\(x)"
-//            var texture = torpedoAtlas.textureNamed(textureName)
-//            torpedoFrames.append(texture)
-//        }
-//        torpedo=SKSpriteNode(texture: torpedoFrames[0])
-//        addChild(torpedo)
-//        torpedo.runAction(SKAction.repeatActionForever(SKAction.animateWithTextures(torpedoFrames, timePerFrame: 0.4, resize: false, restore: false)))
-//        println("torpedo va...")
+        var nombreTextura = [NSArray].self
+        var totalImgs = torpedoAtlas.textureNames.count
+        for var x = 1; x < totalImgs; x++
+        {
+            var textureName = "misilc\(x)"
+            var texture = torpedoAtlas.textureNamed(textureName)
+            torpedoFrames.append(texture)
+        }
+        torpedo=SKSpriteNode(texture: torpedoFrames[0])
+      //  addChild(torpedo)
+        torpedo.runAction(SKAction.repeatActionForever(SKAction.animateWithTextures(torpedoFrames, timePerFrame: 0.4, resize: false, restore: false)))
+        println("torpedo va...")
         
-       torpedo = SKSpriteNode(imageNamed: "torpedo")
+       //torpedo = SKSpriteNode(imageNamed: "torpedo")
+        
+//        let torpedoTexture1 = SKTexture(imageNamed: "misilc1")
+//        torpedoTexture1.filteringMode = .Nearest
+//        let torpedoTexture2 = SKTexture(imageNamed: "misilc2")
+//        torpedoTexture2.filteringMode = .Nearest
+//        
+//        let anim = SKAction.animateWithTextures([torpedoTexture1, torpedoTexture2], timePerFrame: 0.2)
+//        let flap = SKAction.repeatActionForever(anim)
+//        
+//        torpedo = SKSpriteNode(texture: torpedoTexture1)
         //0.2=>0.1
-        torpedo.setScale(0.1)
+        //torpedo.setScale(0.1)
         torpedo.zPosition = 1
         torpedo.position = CGPointMake(submarino.position.x + (submarino.size.width/4) , submarino.position.y - (submarino.size.height/4) )
         torpedo.name = "torpedo"
